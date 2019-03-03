@@ -1,0 +1,11 @@
+Server:
+  portNumber : 9000
+
+Flask:
+  Debug : true
+
+Logger:
+  logFileName : "LotteryG.log"
+  maxLogFileSizeMB : 10
+  maxLogRotate : 3
+  logLevel : 'Debug'
