@@ -3,6 +3,7 @@ import flask
 from flask import request, jsonify
 import lotteryGenerator
 import yaml
+import os
 import io
 
 # Load config from yaml file
@@ -16,7 +17,7 @@ with open("./config.yaml", 'r') as readConfig:
 myLogging = mylogger.myLogger(config["Logger"]["logFileName"],config["Logger"]["maxLogFileSizeMB"],config["Logger"]["logLevel"],config["Logger"]["maxLogRotate"])
 
 myLogging.info("API started")
-print(__name__)
+# print(__name__)
 
 
 app = flask.Flask(__name__)
@@ -67,4 +68,18 @@ def api_id():
 def page_not_found(e):
     return "<h1>404</h1><p>The resource could not be found.</p>", 404
 
-app.run(host='0.0.0.0', port= config["Server"]["portNumber"])
+if "PORT" in os.environ:
+    portNum = os.environ["PORT"]
+    print(portNum)
+else:
+    portNum = config["Server"]["portNumber"]
+try:
+    if 1 <= int(portNum) <= 65535:
+        app.run(host='0.0.0.0', port= portNum)
+    else:
+        raise ValueError
+except ValueError:
+    print("This is NOT a VALID port number.")
+    myLogging.fatal(portNum + " is NOT a VALID port number.")
+    exit(1)
+
