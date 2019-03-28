@@ -53,3 +53,10 @@ Under the MIT License.
 
 ## Related repository
 ```https://github.com/seaskyv/AU-Lottery-generator.git```
+
+## When containerize 
+Due to changes in werkzeug 0.15, please add following line on top of mainl.py:
+#!/usr/local/bin/python3
+
+Remove ^M  carriage return character :
+sed -i -e 's/\r$//' ./*
