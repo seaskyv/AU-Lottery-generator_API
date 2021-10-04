@@ -60,6 +60,6 @@ Due to changes in werkzeug 0.15, please add following line on top of mainl.py:
 
 Remove ^M  carriage return character :
 sed -i -e 's/\r$//' ./*
-## container 
+## container image
 location : docker pull seaskyv/aulotteryapi:1.0
-Please note the the container define ENV var port = 9300
+Please note that the code inside image defines ENV var port = 9300
