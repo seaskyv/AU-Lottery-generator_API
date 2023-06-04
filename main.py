@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import mylogger
 import flask
 from flask import request, jsonify
